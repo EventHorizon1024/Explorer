@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Explorer.Models\Explorer.Models.csproj" />
       <ProjectReference Include="..\Explorer.Storage.Abstractions\Explorer.Storage.Abstractions.csproj" />
     </ItemGroup>
 

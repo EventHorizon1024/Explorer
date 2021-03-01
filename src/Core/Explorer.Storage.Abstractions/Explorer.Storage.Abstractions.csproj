@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shared\Explorer.Models\Explorer.Models.csproj" />
+      <ProjectReference Include="..\Explorer.Models\Explorer.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>

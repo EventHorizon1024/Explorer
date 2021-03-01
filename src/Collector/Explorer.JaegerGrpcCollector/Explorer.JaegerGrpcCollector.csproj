@@ -10,8 +10,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shared\Explorer.Models\Explorer.Models.csproj" />
-      <ProjectReference Include="..\..\Storage\Explorer.Storage.Abstractions\Explorer.Storage.Abstractions.csproj" />
       <ProjectReference Include="..\..\Storage\Explorer.Storage.Elasticsearch\Explorer.Storage.Elasticsearch.csproj" />
     </ItemGroup>
 
