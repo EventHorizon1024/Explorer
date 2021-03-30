@@ -1,0 +1,181 @@
+{
+  "mappings": {
+    "properties": {
+      "duration": {
+        "type": "long"
+      },
+      "flags": {
+        "type": "long"
+      },
+      "logs": {
+        "type": "nested",
+        "dynamic": "false",
+        "properties": {
+          "fields": {
+            "type": "nested",
+            "dynamic": "false",
+            "properties": {
+              "key": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "value": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "timestamp": {
+            "type": "date"
+          }
+        }
+      },
+      "operationName": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "process": {
+        "properties": {
+          "serviceName": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "tags": {
+            "type": "nested",
+            "dynamic": "false",
+            "properties": {
+              "key": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "value": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "references": {
+        "type": "nested",
+        "dynamic": "false",
+        "properties": {
+          "refType": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "spanID": {
+            "type": "keyword",
+            "ignore_above": 256
+          },
+          "traceID": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "spanID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "startTime": {
+        "type": "long"
+      },
+      "tags": {
+        "type": "nested",
+        "dynamic": "false",
+        "properties": {
+          "key": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "type": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "value": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          }
+        }
+      },
+      "traceID": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}

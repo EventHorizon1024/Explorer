@@ -16,7 +16,7 @@ services:
       dockerfile: ./Collector/Explorer.Collector.JaegerGrpc/Dockerfile
     container_name: explorer-collector
     environment:
-      - Elasticsearch__URL=http://localhost:9200
+      - Elasticsearch__URL=http://elasticsearch:9200
     ports:
       - 5001:80
     networks:
@@ -28,7 +28,7 @@ services:
       dockerfile: ./Query/Explorer.Query.JaegerHttp/Dockerfile
     container_name: explorer-query
     environment:
-      - Elasticsearch__URL=http://localhost:9200
+      - Elasticsearch__URL=http://elasticsearch:9200
     ports:
       - 5002:80
     networks:
