@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Explorer.Storage
 {
-    public interface IStorageBuilder
+    public interface ISpanStorageBuilder
     {
         IServiceCollection Services { get; }
     }

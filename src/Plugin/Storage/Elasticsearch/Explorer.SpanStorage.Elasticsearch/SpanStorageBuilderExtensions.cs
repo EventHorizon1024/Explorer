@@ -9,7 +9,8 @@ namespace Explorer.SpanStorage.Elasticsearch
 {
     public static class SpanStorageBuilderExtensions
     {
-        public static IStorageBuilder UseElasticsearch(this IStorageBuilder builder, Action<ElasticsearchOptions> configureOptions)
+        public static ISpanStorageBuilder UseElasticsearch(this ISpanStorageBuilder builder, Action<ElasticsearchOptions> 
+        configureOptions)
         {
             builder.Services.PostConfigure(configureOptions);
             builder.Services.AddHttpClient();

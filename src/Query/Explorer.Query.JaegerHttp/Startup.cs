@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Explorer.DependencyStorage.Elasticsearch;
 using Explorer.Query.JaegerHttp.MappingProfiles;
 using Explorer.SpanStorage.Elasticsearch;
 using Explorer.Storage;
@@ -36,7 +37,10 @@ namespace Explorer.Query.JaegerHttp
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Explorer.Query.JaegerHttp", Version = "v1"});
             });
             services.AddExplorerSpanStorage(
-                options => options.UseElasticsearch(opt => 
+                options => options.UseElasticsearch(opt =>
+                    Configuration.Bind("Elasticsearch", opt)));
+            services.AddExplorerDependencyStorage(
+                options => options.UseElasticsearch(opt =>
                     Configuration.Bind("Elasticsearch", opt)));
 
             services.AddSpaStaticFiles(options => options.RootPath = "wwwroot");

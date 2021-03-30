@@ -10,7 +10,8 @@ namespace Explorer.DependencyStorage.Elasticsearch
 {
     public static class DependencyStorageBuilderExtensions
     {
-        public static IStorageBuilder UseElasticsearch(this IStorageBuilder builder,
+        public static IDependencyStorageBuilder UseElasticsearch(
+            this IDependencyStorageBuilder builder,
             Action<ElasticsearchOptions> configureOptions)
         {
             builder.Services.PostConfigure(configureOptions);

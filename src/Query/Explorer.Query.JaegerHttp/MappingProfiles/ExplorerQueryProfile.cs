@@ -25,6 +25,8 @@ namespace Explorer.Query.JaegerHttp.MappingProfiles
                 .ForMember(dest => dest.Spans,
                     opt => opt.MapFrom(src => src.Spans))
                 .AfterMap(ExtractProcessFromSpans);
+
+            CreateMap<Dependency, DependencyDTO>();
         }
 
         private static string ConvertRefType(SpanRefType refType) =>

@@ -217,7 +217,7 @@ namespace Explorer.SpanStorage.Elasticsearch
                     stringBuilder.Append("            }");
                 }
 
-                return stringBuilder.ToString().TrimStart(',');
+                return stringBuilder.ToString();
             }
 
             var sbBuilder = new StringBuilder();

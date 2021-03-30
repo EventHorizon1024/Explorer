@@ -8,24 +8,24 @@ namespace Explorer.Storage
     {
         public static IServiceCollection AddExplorerSpanStorage(
             this IServiceCollection services,
-            Action<IStorageBuilder> configure)
+            Action<ISpanStorageBuilder> configure)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
             services.AddSingleton<ISpanProcessor, SpanProcessor>();
 
-            configure(new StorageBuilder(services));
+            configure(new SpanStorageBuilder(services));
 
             return services;
         }
         
         public static IServiceCollection AddExplorerDependencyStorage(
             this IServiceCollection services,
-            Action<IStorageBuilder> configure)
+            Action<IDependencyStorageBuilder> configure)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            configure(new StorageBuilder(services));
+            configure(new DependencyStorageBuilder(services));
 
             return services;
         }

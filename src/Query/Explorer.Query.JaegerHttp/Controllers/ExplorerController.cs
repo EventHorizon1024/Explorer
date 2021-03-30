@@ -20,12 +20,16 @@ namespace Explorer.Query.JaegerHttp.Controllers
     public class ExplorerController : Controller
     {
         private readonly ISpanReader _spanReader;
+        private readonly IDependencyReader _dependencyReader;
         private readonly IMapper _mapper;
 
-        public ExplorerController(ISpanReader spanReader, IMapper mapper)
+        public ExplorerController(ISpanReader spanReader,
+            IDependencyReader dependencyReader,
+            IMapper mapper)
         {
             _spanReader = spanReader;
             _mapper = mapper;
+            _dependencyReader = dependencyReader;
         }
 
         [HttpGet("services")]
@@ -140,39 +144,12 @@ namespace Explorer.Query.JaegerHttp.Controllers
             };
         }
 
-        //
-        //     public async Task<JaegerResult<List<DependencyLinkDTO>>> GetDependencies(long endTs, long lookBack)
-        //     {
-        //         var traces = await _spanReader.FindTracesAsync(new TraceQueryParameters
-        //         {
-        //             StartTimeMin = (endTs - lookBack) * 1000,
-        //             StartTimeMax = endTs * 1000
-        //         });
-        //
-        //         var spans = traces.SelectMany(t => t.Spans).ToList();
-        //
-        //         var dependencies = spans.Where(span => span.References.Any(r => r.RefType == SpanRefType.ChildOf))
-        //             .GroupBy
-        //             (
-        //                 childSpan =>
-        //                 {
-        //                     var @ref = childSpan.References.First();
-        //                     var parent = spans.FirstOrDefault(s => s.SpanID == @ref.SpanID);
-        //                     return new
-        //                     {
-        //                         Parent = parent?.Process?.ServiceName,
-        //                         Child = childSpan.Process?.ServiceName
-        //                     };
-        //                 })
-        //             .Where(g => g.Key.Parent != g.Key.Child).Select(g => new DependencyLinkDTO
-        //             {
-        //                 Parent = g.Key.Parent,
-        //                 Child = g.Key.Child,
-        //                 CallCount = g.Count()
-        //             }).ToList();
-        //
-        //         return new JaegerResult<List<DependencyLinkDTO>>(dependencies);
-        //     }
-        // }
+        [HttpGet("dependencies")]
+        public async Task<JaegerResult<DependencyDTO[]>> GetDependencies(long endTs, long lookBack)
+        {
+            var dependencies = _mapper.Map<DependencyDTO[]>(
+                await _dependencyReader.GetDependenciesAsync((endTs - lookBack) * 1000, endTs * 1000));
+            return new JaegerResult<DependencyDTO[]>(dependencies);
+        }
     }
 }

@@ -2,9 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Explorer.Storage
 {
-    internal class StorageBuilder : IStorageBuilder
+    internal class SpanStorageBuilder : ISpanStorageBuilder
     {
-        public StorageBuilder(IServiceCollection services)
+        public SpanStorageBuilder(IServiceCollection services)
         {
             Services = services;
         }

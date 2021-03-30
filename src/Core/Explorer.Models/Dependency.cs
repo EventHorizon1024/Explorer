@@ -6,8 +6,6 @@ namespace Explorer.Models
 
         public string Child { get; set; }
 
-        public long CallCount { get; set; }
-
-        public string Source { get; set; }    
+        public long CallCount { get; set; } 
     }
 }

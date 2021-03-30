@@ -1,4 +1,4 @@
-namespace Explorer.SpanStorage.Elasticsearch
+namespace Explorer.Storage.Elasticsearch
 {
     public class ElasticsearchOptions
     {
