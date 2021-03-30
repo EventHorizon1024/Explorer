@@ -1,0 +1,39 @@
+version: '3'
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.1
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    networks:
+      - es-network
+
+  collector:
+    build:
+      context: .
+      dockerfile: ./Collector/Explorer.Collector.JaegerGrpc/Dockerfile
+    container_name: explorer-collector
+    environment:
+      - Elasticsearch__URL=http://localhost:9200
+    ports:
+      - 5001:80
+    networks:
+      - es-network
+
+  query:
+    build:
+      context: .
+      dockerfile: ./Query/Explorer.Query.JaegerHttp/Dockerfile
+    container_name: explorer-query
+    environment:
+      - Elasticsearch__URL=http://localhost:9200
+    ports:
+      - 5002:80
+    networks:
+      - es-network
+
+networks:
+  es-network:
+    driver: bridge

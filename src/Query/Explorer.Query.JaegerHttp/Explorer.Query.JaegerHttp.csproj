@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Plugin\Storage\Elasticsearch\Explorer.DependencyStorage.Elasticsearch\Explorer.DependencyStorage.Elasticsearch.csproj" />
+      <ProjectReference Include="..\..\Plugin\Storage\Elasticsearch\Explorer.SpanStorage.Elasticsearch\Explorer.SpanStorage.Elasticsearch.csproj" />
+    </ItemGroup>
+</Project>

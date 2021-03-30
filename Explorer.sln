@@ -1,26 +1,37 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6D4E2A53-37CD-4FEE-BFD6-AA1008517027}"
+ProjectSection(SolutionItems) = preProject
+	src\docker-compose.yml = src\docker-compose.yml
+EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Collector", "Collector", "{1928DFDB-96A3-4F20-AFE4-571C5E550A2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{5E809B22-B007-40A9-864E-D7A1256096E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.JaegerGrpcCollector", "src\Collector\Explorer.JaegerGrpcCollector\Explorer.JaegerGrpcCollector.csproj", "{B092443E-B6C9-4FC5-B751-6F76755B4A21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Collector.JaegerGrpc", "src\Collector\Explorer.Collector.JaegerGrpc\Explorer.Collector.JaegerGrpc.csproj", "{B092443E-B6C9-4FC5-B751-6F76755B4A21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{41608FE3-DC2D-43D4-AE97-DC5679D64D60}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Query", "Query", "{E31F3FAF-54FB-468D-BA1D-2530AD2B9005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Storage.Elasticsearch", "src\Storage\Explorer.Storage.Elasticsearch\Explorer.Storage.Elasticsearch.csproj", "{0A81B01B-B0A8-4990-8810-2C52FF0C5F05}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.JaegerHttpQuery", "src\Query\Explorer.JaegerHttpQuery\Explorer.JaegerHttpQuery.csproj", "{8470ADC9-D7E2-441F-8753-8DD2C82D29D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Query.JaegerHttp", "src\Query\Explorer.Query.JaegerHttp\Explorer.Query.JaegerHttp.csproj", "{8470ADC9-D7E2-441F-8753-8DD2C82D29D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Models", "src\Core\Explorer.Models\Explorer.Models.csproj", "{0710721C-CF23-472E-B691-5F1FCDC81E70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Storage", "src\Core\Explorer.Storage\Explorer.Storage.csproj", "{FC435702-91BC-4949-9E10-35308EE53D85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Storage.Abstractions", "src\Core\Explorer.Storage.Abstractions\Explorer.Storage.Abstractions.csproj", "{AD76449A-C860-4E5C-9B94-BEB2FA15DB11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{4E88EFD8-8B1F-4099-A2B8-D382D50A386E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elasticsearch", "Elasticsearch", "{6F3B4F2B-B4FF-4316-80CB-09DBB3C7F7AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.DependencyStorage.Elasticsearch", "src\Plugin\Storage\Elasticsearch\Explorer.DependencyStorage.Elasticsearch\Explorer.DependencyStorage.Elasticsearch.csproj", "{D4B0E7E4-9EE9-4958-A173-52D024865404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.SpanStorage.Elasticsearch", "src\Plugin\Storage\Elasticsearch\Explorer.SpanStorage.Elasticsearch\Explorer.SpanStorage.Elasticsearch.csproj", "{CDC7C332-D264-43EB-972F-2637CCA85D83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer.Storage.Elasticsearch", "src\Plugin\Storage\Elasticsearch\Explorer.Storage.Elasticsearch\Explorer.Storage.Elasticsearch.csproj", "{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +43,6 @@ Global
 		{B092443E-B6C9-4FC5-B751-6F76755B4A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B092443E-B6C9-4FC5-B751-6F76755B4A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B092443E-B6C9-4FC5-B751-6F76755B4A21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A81B01B-B0A8-4990-8810-2C52FF0C5F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A81B01B-B0A8-4990-8810-2C52FF0C5F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A81B01B-B0A8-4990-8810-2C52FF0C5F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A81B01B-B0A8-4990-8810-2C52FF0C5F05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8470ADC9-D7E2-441F-8753-8DD2C82D29D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8470ADC9-D7E2-441F-8753-8DD2C82D29D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8470ADC9-D7E2-441F-8753-8DD2C82D29D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,17 +59,33 @@ Global
 		{AD76449A-C860-4E5C-9B94-BEB2FA15DB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD76449A-C860-4E5C-9B94-BEB2FA15DB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD76449A-C860-4E5C-9B94-BEB2FA15DB11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4B0E7E4-9EE9-4958-A173-52D024865404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B0E7E4-9EE9-4958-A173-52D024865404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B0E7E4-9EE9-4958-A173-52D024865404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B0E7E4-9EE9-4958-A173-52D024865404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDC7C332-D264-43EB-972F-2637CCA85D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDC7C332-D264-43EB-972F-2637CCA85D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDC7C332-D264-43EB-972F-2637CCA85D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDC7C332-D264-43EB-972F-2637CCA85D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1928DFDB-96A3-4F20-AFE4-571C5E550A2A} = {6D4E2A53-37CD-4FEE-BFD6-AA1008517027}
-		{5E809B22-B007-40A9-864E-D7A1256096E6} = {6D4E2A53-37CD-4FEE-BFD6-AA1008517027}
 		{B092443E-B6C9-4FC5-B751-6F76755B4A21} = {1928DFDB-96A3-4F20-AFE4-571C5E550A2A}
 		{41608FE3-DC2D-43D4-AE97-DC5679D64D60} = {6D4E2A53-37CD-4FEE-BFD6-AA1008517027}
 		{E31F3FAF-54FB-468D-BA1D-2530AD2B9005} = {6D4E2A53-37CD-4FEE-BFD6-AA1008517027}
-		{0A81B01B-B0A8-4990-8810-2C52FF0C5F05} = {5E809B22-B007-40A9-864E-D7A1256096E6}
 		{8470ADC9-D7E2-441F-8753-8DD2C82D29D7} = {E31F3FAF-54FB-468D-BA1D-2530AD2B9005}
 		{0710721C-CF23-472E-B691-5F1FCDC81E70} = {41608FE3-DC2D-43D4-AE97-DC5679D64D60}
 		{FC435702-91BC-4949-9E10-35308EE53D85} = {41608FE3-DC2D-43D4-AE97-DC5679D64D60}
 		{AD76449A-C860-4E5C-9B94-BEB2FA15DB11} = {41608FE3-DC2D-43D4-AE97-DC5679D64D60}
+		{5E809B22-B007-40A9-864E-D7A1256096E6} = {4E88EFD8-8B1F-4099-A2B8-D382D50A386E}
+		{4E88EFD8-8B1F-4099-A2B8-D382D50A386E} = {6D4E2A53-37CD-4FEE-BFD6-AA1008517027}
+		{6F3B4F2B-B4FF-4316-80CB-09DBB3C7F7AC} = {5E809B22-B007-40A9-864E-D7A1256096E6}
+		{D4B0E7E4-9EE9-4958-A173-52D024865404} = {6F3B4F2B-B4FF-4316-80CB-09DBB3C7F7AC}
+		{CDC7C332-D264-43EB-972F-2637CCA85D83} = {6F3B4F2B-B4FF-4316-80CB-09DBB3C7F7AC}
+		{9FEA9AC5-D931-4128-BFE0-75A236FDA4C5} = {6F3B4F2B-B4FF-4316-80CB-09DBB3C7F7AC}
 	EndGlobalSection
 EndGlobal
