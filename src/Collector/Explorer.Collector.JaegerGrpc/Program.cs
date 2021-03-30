@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -26,10 +27,13 @@ namespace Explorer.Collector.JaegerGrpc
                     {
                         webBuilder.ConfigureKestrel(options =>
                         {
-                            options.Listen(IPAddress.Any, 5000, listenOptions =>
+                            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                             {
-                                listenOptions.Protocols = HttpProtocols.Http2;
-                            });
+                                options.Listen(IPAddress.Any, 5000, listenOptions =>
+                                {
+                                    listenOptions.Protocols = HttpProtocols.Http2;
+                                });
+                            }
                         });
                         webBuilder.UseStartup<Startup>();
                     });

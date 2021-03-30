@@ -118,11 +118,14 @@ namespace Explorer.SpanStorage.Elasticsearch
             {
                 var stringBuilder = new StringBuilder();
 
-                stringBuilder.Append("          { \"match\": { \"process.serviceName\": \"" + query.ServiceName +
-                                     "\" }}");
+                if (!string.IsNullOrEmpty(query.ServiceName))
+                {
+                    stringBuilder.Append("          { \"match\": { \"process.serviceName\": \"" + query.ServiceName + "\" }}");
+                }
                 if (!string.IsNullOrWhiteSpace(query.OperationName))
                 {
                     stringBuilder.AppendLine(",");
+
                     stringBuilder.Append("          { \"match\": { \"operationName\":   \"" + query.OperationName +
                                          "\"}}");
                 }
@@ -217,7 +220,7 @@ namespace Explorer.SpanStorage.Elasticsearch
                     stringBuilder.Append("            }");
                 }
 
-                return stringBuilder.ToString();
+                return stringBuilder.ToString().TrimStart(',');
             }
 
             var sbBuilder = new StringBuilder();
@@ -241,7 +244,7 @@ namespace Explorer.SpanStorage.Elasticsearch
             var client = _httpClientFactory.CreateClient();
             
             var request = sbBuilder.ToString();
-            var httpResponseMessage = await client.PostAsync($"{_options.URL}/_search",
+            var httpResponseMessage = await client.PostAsync($"{_options.URL}/{ElasticsearchStorageConstants.SpanIndexName}/_search",
                 new StringContent(request, Encoding.UTF8, "application/json"));
 
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
