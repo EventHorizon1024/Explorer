@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,10 @@ namespace Explorer.DependencyStorage.Elasticsearch
             var httpResponseMessage = await client.PostAsync(
                 $"{_options.URL}/{ElasticsearchStorageConstants.SpanIndexName}/_search",
                 new StringContent(request, Encoding.UTF8, "application/json"));
-
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                return Array.Empty<Dependency>();
+            }
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             var result = response.FromJson<SearchResponse<Span>>();
             var spans = result.Data;

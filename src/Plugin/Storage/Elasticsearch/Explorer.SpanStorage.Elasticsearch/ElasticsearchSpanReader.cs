@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,10 @@ namespace Explorer.SpanStorage.Elasticsearch
             var httpResponseMessage = await client.PostAsync($"{_options.URL}/{ElasticsearchStorageConstants.SpanIndexName}/_search",
                 new StringContent(query, Encoding.UTF8, "application/json"));
 
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                return Array.Empty<string>();
+            }
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             return response.FromJson<SearchResponse<object>>().Aggregations["serviceName"].Keys.ToArray();
         }
@@ -49,7 +54,10 @@ namespace Explorer.SpanStorage.Elasticsearch
                 ",\"aggs\":{\"operationName\":{\"terms\":{\"size\":10000,\"field\":\"operationName.keyword\"}}}}";
             var httpResponseMessage = await client.PostAsync($"{_options.URL}/{ElasticsearchStorageConstants.SpanIndexName}/_search",
                 new StringContent(query, Encoding.UTF8, "application/json"));
-
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                return Array.Empty<string>();
+            }
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             return response.FromJson<SearchResponse<object>>().Aggregations["operationName"].Keys.ToArray();
         }
@@ -99,6 +107,10 @@ namespace Explorer.SpanStorage.Elasticsearch
             var client = _httpClientFactory.CreateClient();
             var httpResponseMessage = await client.PostAsync($"{_options.URL}/_msearch",
                 new StringContent(request, Encoding.UTF8, "application/json"));
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                return Array.Empty<Trace>();
+            }
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             var result = response.FromJson<MultiSearchResponse<Span>>();
 
@@ -243,7 +255,10 @@ namespace Explorer.SpanStorage.Elasticsearch
             var request = sbBuilder.ToString();
             var httpResponseMessage = await client.PostAsync($"{_options.URL}/{ElasticsearchStorageConstants.SpanIndexName}/_search",
                 new StringContent(request, Encoding.UTF8, "application/json"));
-
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NotFound)
+            {
+                return Array.Empty<string>();
+            }
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
             var result = response.FromJson<SearchResponse<object>>();
 
