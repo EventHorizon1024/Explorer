@@ -118,14 +118,11 @@ namespace Explorer.SpanStorage.Elasticsearch
             {
                 var stringBuilder = new StringBuilder();
 
-                if (!string.IsNullOrEmpty(query.ServiceName))
-                {
-                    stringBuilder.Append("          { \"match\": { \"process.serviceName\": \"" + query.ServiceName + "\" }}");
-                }
+                stringBuilder.Append("          { \"match\": { \"process.serviceName\": \"" + query.ServiceName +
+                                     "\" }}");
                 if (!string.IsNullOrWhiteSpace(query.OperationName))
                 {
                     stringBuilder.AppendLine(",");
-
                     stringBuilder.Append("          { \"match\": { \"operationName\":   \"" + query.OperationName +
                                          "\"}}");
                 }
